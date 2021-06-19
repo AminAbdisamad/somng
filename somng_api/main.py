@@ -1,18 +1,14 @@
 from fastapi import FastAPI
+import uvicorn
+from config import APP_NAME, APP_DESCRIPTION, APP_VERSION
 
-
-app = FastAPI(
-    title="Somnog", description="Somnog Event management app", version="1.0.0"
-)
+app = FastAPI(title=APP_NAME, description=APP_DESCRIPTION, version=APP_VERSION)
 
 
 @app.get("/")
-def index() -> None:
-    return {"Name": "Somnog"}
+def index() -> dict:
+    return {"Name": APP_NAME, "Description": APP_DESCRIPTION, "Version": APP_VERSION}
 
 
-def greating(message):
-    return "hello" + message
-
-
-
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
