@@ -1,11 +1,21 @@
 from datetime import datetime
-from sqlalchemy import Column, DateTime
+from sqlalchemy import Column, DateTime, String
 from pydantic import BaseModel
 from enum import Enum
 from sqlalchemy.orm import Session
+from database import SessionLocal
 
 
-class TimeStampMixin(object):
+# Database Generator
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+
+class TimeStampMixin:
     """Timestamping mixin"""
 
     created_at = Column(DateTime, default=datetime.now)
@@ -16,6 +26,16 @@ class TimeStampMixin(object):
     @staticmethod
     def _updated_at(mapper, connection, target):
         target.updated_at = datetime.now()
+
+
+class ContactMixin(TimeStampMixin):
+    """Contact Mixin"""
+
+    email = Column(String(120), unique=True, nullable=False)
+    phone = Column(String(80), unique=True, nullable=True)
+    website_url = Column(String(200), nullable=True)
+    twitter_url = Column(String(200), nullable=True)
+    facebook_url = Column(String(200), nullable=True)
 
 
 class BaseSchema(BaseModel):

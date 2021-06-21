@@ -17,8 +17,8 @@ from database.core import TimeStampMixin
 
 
 # * Workshops and Presenters Association table
-presenter_workshop_association = Table(
-    "presenter_workshop_association",
+presenter_workshop_assoc = Table(
+    "presenter_workshop_assoc",
     Base.metadata,
     Column("presenters_id", Integer, ForeignKey("presenters.id", ondelete="CASCADE")),
     Column("workshops_id", Integer, ForeignKey("workshops.id", ondelete="CASCADE")),
@@ -36,6 +36,6 @@ class Workshop(Base, TimeStampMixin):
     location = Column(String(80))
     presenters = relationship(
         "Presenters",
-        secondary=presenter_workshop_association,
+        secondary=presenter_workshop_assoc,
         back_populates="workshops",
     )

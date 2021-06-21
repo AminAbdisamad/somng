@@ -9,7 +9,7 @@ from sqlalchemy.orm import Session
 from database.core import save
 
 
-def add_presenter(*, db: Session, presenter: PresenterRegister):
+def add_presenter(*, db: Session, presenter: PresenterRegister) -> Optional[Presenter]:
     """Create new presenter"""
     presenter = Presenter(**presenter.dict())
     save(db=db, data=presenter)
