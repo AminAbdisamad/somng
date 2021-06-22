@@ -1,0 +1,2 @@
+# somng
+Event Management application
