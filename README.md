@@ -1,2 +1,2 @@
-# Somnog
+# SomNOG
 Event Management application
