@@ -6,6 +6,7 @@ from database.core import TimeStampMixin, BaseSchema
 
 
 class Location(Base, TimeStampMixin):
+    __tablename__ = "locations"
     id = Column(Integer, primary_key=True)
     country = Column(String)
     city = Column(String)

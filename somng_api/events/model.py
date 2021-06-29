@@ -17,10 +17,15 @@ from database.core import StartEndDateMixin, BaseSchema
 
 
 class Event(Base, StartEndDateMixin):
+    """An Event Model that represents events table in the database"""
+
+    __tablename__ = "events"
+
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False, index=True)
     description = Column(Text)
     price = Column(Integer)
+
     workshop_id = None
     conference_id = None
     location_id = None
