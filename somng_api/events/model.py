@@ -23,4 +23,4 @@ class Event(Base, StartEndDateMixin):
     price = Column(Integer)
     workshop_id = None
     conference_id = None
-    address_id = None
+    location_id = None
