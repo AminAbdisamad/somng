@@ -37,7 +37,7 @@ class SpeakerRegister(SpeakerBase):
     pass
 
 
-class PresenterUpdate(SpeakerBase):
+class SpeakerUpdate(SpeakerBase):
     pass
 
 
