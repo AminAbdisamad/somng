@@ -30,17 +30,12 @@ presenter_workshop_assoc = Table(
 class Workshop(Base, TimeStampMixin):
     __tablename__ = "workshops"
     id = Column(Integer, primary_key=True, index=True)
-    title = Column(String(150), nullable=False)
+    title = Column(String, nullable=False)
     description = Column(Text)
     start_date = Column(DateTime, nullable=True, default=datetime.now)
     end_date = Column(DateTime, nullable=True, default=datetime.now)
-    course_image = Column(String(20), nullable=False, default="default.png")
-    location = Column(String(80))
-    presenters = relationship(
-        "Presenters",
-        secondary=presenter_workshop_assoc,
-        back_populates="workshops",
-    )
+    course_image = Column(String, nullable=False, default="default.png")
+    location = Column(String)
 
 
 class Speaker(Base, TimeStampMixin):
