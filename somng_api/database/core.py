@@ -39,6 +39,8 @@ class ContactMixin(TimeStampMixin):
 
 
 class StartEndDateMixin(TimeStampMixin):
+    """Start date & End date Mixin"""
+
     start_date = Column(DateTime, default=datetime.now)
     end_date = Column(DateTime, default=datetime.now)
 

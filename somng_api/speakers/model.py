@@ -2,11 +2,13 @@ from typing import Optional
 from sqlalchemy import Column, Text, String, Integer, Boolean, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
 from database import Base
-from database.core import TimeStampMixin, BaseSchema
+from database.core import ContactMixin, BaseSchema
 from workshops.model import Workshop, presenter_workshop_assoc
 
 
-class Speaker(Base, TimeStampMixin):
+class Speaker(Base, ContactMixin):
+    """Speakers Model represents speakers table in the database"""
+
     __tablename__ = "speakers"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(150), nullable=False)
@@ -14,6 +16,7 @@ class Speaker(Base, TimeStampMixin):
     company = Column(String(140), nullable=True)
     title = Column(String(120), nullable=True)
     avatar = Column(String(100), default="default.png")
+    is_confirmed = Column(Boolean, default=False)
     workshops = relationship(
         "Workshop", secondary=presenter_workshop_assoc, back_populates="lecturers"
     )
