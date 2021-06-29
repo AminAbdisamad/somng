@@ -8,16 +8,11 @@ from sqlalchemy import (
     ForeignKey,
     Table,
 )
-from sqlalchemy.orm import relationship
-from database import Base
-from database.core import TimeStampMixin
-
 from typing import Optional
 from sqlalchemy import Column, Text, String, Integer, Boolean, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
 from database import Base
 from database.core import TimeStampMixin, BaseSchema
-from workshops.model import Workshop, presenter_workshop_assoc
 
 
 # * Database Models

@@ -4,13 +4,17 @@ from sqlalchemy import Column, Text, String, Integer, Boolean, ForeignKey, DateT
 from sqlalchemy.orm import relationship
 from database import Base
 from database.core import ContactMixin, ContactBase
-from workshops.model import Workshop, presenter_workshop_assoc
+
+# from workshops.model import Workshop, presenter_workshop_assoc
 
 
-class Speaker(Base, ContactMixin):
-    """Speakers Model represents speakers table in the database"""
+class Lecturer(Base, ContactMixin):
+    """
+    Lecturer Model represents workshop lecturers table in the database
+    Workshop Lecturers are engineers that teach different tracks of the workshop
+    """
 
-    __tablename__ = "speakers"
+    __tablename__ = "lecturers"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(150), nullable=False)
     description = Column(Text)
@@ -18,14 +22,14 @@ class Speaker(Base, ContactMixin):
     title = Column(String(120), nullable=True)
     avatar = Column(String(100), default="default.png")
     is_confirmed = Column(Boolean, default=False)
-    session_id = None
+    workshop_tracks_id = None
     # workshops = relationship(
     #     "Workshop", secondary=presenter_workshop_assoc, back_populates="lecturers"
     # )
 
 
 # * Pydantic Models
-class SpeakerBase(ContactBase):
+class LecturerBase(ContactBase):
     name: str
     description: Optional[str] = None
     company: Optional[str] = None
@@ -33,15 +37,15 @@ class SpeakerBase(ContactBase):
     is_confirmed: Optional[bool] = False
 
 
-class SpeakerRegister(SpeakerBase):
+class LecturerRegister(LecturerBase):
     pass
 
 
-class SpeakerUpdate(SpeakerBase):
+class LecturerUpdate(LecturerBase):
     pass
 
 
-class SpeakerRead(SpeakerBase):
+class LecturerRead(LecturerBase):
     id: int
     created_at: datetime
     updated_at: datetime

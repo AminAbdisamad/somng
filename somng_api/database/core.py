@@ -1,3 +1,4 @@
+from typing import Optional
 from datetime import datetime
 from sqlalchemy import Column, DateTime, String
 from pydantic import BaseModel
@@ -16,7 +17,7 @@ def get_db():
 
 
 class TimeStampMixin:
-    """Timestamping mixin"""
+    """Timestamp mixin"""
 
     created_at = Column(DateTime, default=datetime.now)
     created_at._creation_order = 9998
@@ -26,6 +27,13 @@ class TimeStampMixin:
     @staticmethod
     def _updated_at(mapper, connection, target):
         target.updated_at = datetime.now()
+
+
+class StartEndDateMixin(TimeStampMixin):
+    """Start date & End date Mixin"""
+
+    start_date = Column(DateTime, default=datetime.now)
+    end_date = Column(DateTime, default=datetime.now)
 
 
 class ContactMixin(TimeStampMixin):
@@ -38,16 +46,19 @@ class ContactMixin(TimeStampMixin):
     facebook_url = Column(String(200), nullable=True)
 
 
-class StartEndDateMixin(TimeStampMixin):
-    start_date = Column(DateTime, default=datetime.now)
-    end_date = Column(DateTime, default=datetime.now)
-
-
 class BaseSchema(BaseModel):
     class Config:
         orm_mode = True
         validate_assignment = True
         arbitrary_types_allowed = True
+
+
+class ContactBase(BaseSchema):
+    email: str
+    phone: str
+    website_url: Optional[str] = None
+    twitter_url: Optional[str] = None
+    facebook_url: Optional[str] = None
 
 
 class UserRoles(str, Enum):
