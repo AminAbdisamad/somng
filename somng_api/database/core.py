@@ -38,6 +38,11 @@ class ContactMixin(TimeStampMixin):
     facebook_url = Column(String(200), nullable=True)
 
 
+class StartEndDateMixin(TimeStampMixin):
+    start_date = Column(DateTime, default=datetime.now)
+    end_date = Column(DateTime, default=datetime.now)
+
+
 class BaseSchema(BaseModel):
     class Config:
         orm_mode = True
