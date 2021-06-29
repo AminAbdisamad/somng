@@ -1,8 +1,9 @@
+from datetime import datetime
 from typing import Optional
 from sqlalchemy import Column, Text, String, Integer, Boolean, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
 from database import Base
-from database.core import ContactMixin, BaseSchema
+from database.core import ContactMixin, ContactBase
 from workshops.model import Workshop, presenter_workshop_assoc
 
 
@@ -12,38 +13,35 @@ class Speaker(Base, ContactMixin):
     __tablename__ = "speakers"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(150), nullable=False)
-    description = Column(Text, nullable=True)
+    description = Column(Text)
     company = Column(String(140), nullable=True)
     title = Column(String(120), nullable=True)
     avatar = Column(String(100), default="default.png")
     is_confirmed = Column(Boolean, default=False)
-    workshops = relationship(
-        "Workshop", secondary=presenter_workshop_assoc, back_populates="lecturers"
-    )
+    session_id = None
+    # workshops = relationship(
+    #     "Workshop", secondary=presenter_workshop_assoc, back_populates="lecturers"
+    # )
 
 
 # * Pydantic Models
-class PresenterBase(BaseSchema):
-    first_name: str
-    last_name: str
-    email: str
-    phone: str
-    company: Optional[str]
-    title: Optional[str]
-    website_url: Optional[str]
-    twitter_url: Optional[str]
-    facebook_url: Optional[str]
+class SpeakerBase(ContactBase):
+    name: str
+    description: Optional[str] = None
+    company: Optional[str] = None
+    title: Optional[str] = None
+    is_confirmed: Optional[bool] = False
 
 
-class PresenterRegister(PresenterBase):
-    avatar: Optional[str]
+class SpeakerRegister(SpeakerBase):
+    pass
 
 
-class PresenterUpdate(PresenterBase):
-    avatar: Optional[str]
+class PresenterUpdate(SpeakerBase):
+    pass
 
 
-class PresenterRead(PresenterBase):
+class SpeakerRead(SpeakerBase):
     id: int
-    avatar: str
-    Workshops: Optional[list[Workshop]]
+    created_at: datetime
+    updated_at: datetime
