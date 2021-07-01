@@ -47,8 +47,8 @@ class Workshop(Base, TimeStampMixin):
 # * Pydantic Models
 class WorkshopBase(BaseSchema):
     title:str
-    description = Column(Text)
-    start_date = Column(DateTime, nullable=True, default=datetime.now)
+    description:str
+    start_date = Optional[datetime] = datetime.now()
     end_date = Column(DateTime, nullable=True, default=datetime.now)
     course_image = Column(String(20), nullable=False, default="default.png")
     location = Column(String(80))
