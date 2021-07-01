@@ -43,19 +43,6 @@ class Workshop(Base, TimeStampMixin):
     )
 
 
-class Speaker(Base, TimeStampMixin):
-    __tablename__ = "speakers"
-    id = Column(Integer, primary_key=True, index=True)
-    first_name = Column(String(150), nullable=False)
-    last_name = Column(String(150), nullable=False)
-    description = Column(Text, nullable=True)
-    company = Column(String(140), nullable=True)
-    title = Column(String(120), nullable=True)
-    avatar = Column(String(100), default="default.png")
-    workshops = relationship(
-        "Workshop", secondary=presenter_workshop_assoc, back_populates="lecturers"
-    )
-
 
 # * Pydantic Models
 class PresenterBase(BaseSchema):
