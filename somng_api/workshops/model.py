@@ -48,10 +48,10 @@ class Workshop(Base, TimeStampMixin):
 class WorkshopBase(BaseSchema):
     title:str
     description:str
-    start_date = Optional[datetime] = datetime.now()
-    end_date = Column(DateTime, nullable=True, default=datetime.now)
-    course_image = Column(String(20), nullable=False, default="default.png")
-    location = Column(String(80))
+    start_date:Optional[datetime] = datetime.now()
+    end_date:Optional[datetime] = datetime.now()
+    course_image:str
+    location:str
 
 
 class PresenterRegister(PresenterBase):
