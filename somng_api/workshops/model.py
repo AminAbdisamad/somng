@@ -45,16 +45,13 @@ class Workshop(Base, TimeStampMixin):
 
 
 # * Pydantic Models
-class PresenterBase(BaseSchema):
-    first_name: str
-    last_name: str
-    email: str
-    phone: str
-    company: Optional[str]
-    title: Optional[str]
-    website_url: Optional[str]
-    twitter_url: Optional[str]
-    facebook_url: Optional[str]
+class WorkshopBase(BaseSchema):
+    title:str
+    description = Column(Text)
+    start_date = Column(DateTime, nullable=True, default=datetime.now)
+    end_date = Column(DateTime, nullable=True, default=datetime.now)
+    course_image = Column(String(20), nullable=False, default="default.png")
+    location = Column(String(80))
 
 
 class PresenterRegister(PresenterBase):
