@@ -2,6 +2,7 @@ import time
 from typing import Dict, Any, Union
 import jwt
 from config import JWT_ALGORITHM, JWT_SECRET
+from .model import UserLoginSchema
 
 
 def signJWT(user_id: str) -> Dict[str, str]:
@@ -20,3 +21,13 @@ def decodeJWT(token: str) -> Union[dict, None]:
         return decoded_token if decoded_token["expires"] >= time.time() else None
     except:
         return None
+
+
+def check_user(data: UserLoginSchema):
+    # Will asume we've stored users in a database
+    users: list = []
+
+    for user in users:
+        if user.email == data.email and user.password == data.password:
+            return True
+    return False
