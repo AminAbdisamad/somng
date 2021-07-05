@@ -14,8 +14,8 @@ from database.core import StartEndDateMixin, BaseSchema
 from workshops.model import Workshop, presenter_workshop_assoc
 
 
-class Conference(Base, StartEndDateMixin):
-    __tablename__ = "conferences"
+class ConferenceSession(Base, StartEndDateMixin):
+    __tablename__ = "conference_sessions"
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, nullable=False)
     description = Column(Text)

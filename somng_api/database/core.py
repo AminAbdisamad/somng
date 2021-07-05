@@ -73,3 +73,4 @@ def save(*, db: Session, data: str):
     db.add(data)
     db.commit()
     db.flush(data)
+

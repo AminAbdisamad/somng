@@ -25,7 +25,9 @@ class Event(Base, StartEndDateMixin):
     name = Column(String, nullable=False, index=True)
     description = Column(Text)
     price = Column(Integer)
+    country = Column(String, default="Somalia")
+    city = Column(String, default="Mogadishu")
+    address = Column(String)
 
     workshop_id = None
     conference_id = None
-    location_id = None
