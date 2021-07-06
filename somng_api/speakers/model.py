@@ -31,6 +31,7 @@ class SpeakerBase(ContactBase):
     company: Optional[str] = None
     title: Optional[str] = None
     is_confirmed: Optional[bool] = False
+    publish:Optional[bool] = False
 
 
 class SpeakerRegister(SpeakerBase):

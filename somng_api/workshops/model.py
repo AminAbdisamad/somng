@@ -36,17 +36,15 @@ class Workshop(Base, StartEndDateMixin):
     workshop_tracks = relationship("WorkshopTracks")
 
 
+
 # * Pydantic Models
-class PresenterBase(BaseSchema):
-    first_name: str
-    last_name: str
-    email: str
-    phone: str
-    company: Optional[str]
-    title: Optional[str]
-    website_url: Optional[str]
-    twitter_url: Optional[str]
-    facebook_url: Optional[str]
+class WorkshopBase(BaseSchema):
+    title:str
+    description:str
+    start_date:Optional[datetime] = datetime.now()
+    end_date:Optional[datetime] = datetime.now()
+    course_image:str
+    location:str
 
 
 class PresenterRegister(PresenterBase):
