@@ -8,7 +8,7 @@ from database.core import StartEndDateMixin, BaseSchema
 # One event can have multiple relationships One to many
 
 
-class Event(Base, StartEndDateMixin):
+class Application(Base, StartEndDateMixin):
     """An Event Model that represents events table in the database"""
 
     __tablename__ = "events"
@@ -24,5 +24,3 @@ class Event(Base, StartEndDateMixin):
     # Relationships
     workshops = relationship("Workshop")
     conferences = relationship("Conference")
-    
-
