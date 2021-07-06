@@ -46,6 +46,9 @@ class ContactMixin(TimeStampMixin):
     facebook_url = Column(String(200), nullable=True)
 
 
+# Base Pydantic Models
+
+
 class Schema(BaseModel):
     class Config:
         orm_mode = True
@@ -54,8 +57,8 @@ class Schema(BaseModel):
 
 
 class StartEndDateSchema(Schema):
-    start_date: Optional[datetime] = datetime.now()
-    end_date: Optional[datetime] = datetime.now()
+    start_date: Optional[datetime] = None
+    end_date: Optional[datetime] = None
 
 
 class ContactBase(Schema):
