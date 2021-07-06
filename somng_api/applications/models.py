@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import Optional
 from sqlalchemy import Column, String, Integer, DateTime, Text
 from sqlalchemy.orm import relationship
 from database import Base
@@ -9,7 +8,7 @@ from database.core import StartEndDateMixin, BaseSchema
 # One event can have multiple relationships One to many
 
 
-class Event(Base, StartEndDateMixin):
+class Application(Base, StartEndDateMixin):
     """An Event Model that represents events table in the database"""
 
     __tablename__ = "events"
@@ -25,26 +24,3 @@ class Event(Base, StartEndDateMixin):
     # Relationships
     workshops = relationship("Workshop")
     conferences = relationship("Conference")
-
-
-# Pydantic Models
-class EventBase(BaseSchema):
-    name: str
-    description: Optional[str] = None
-    price: int
-    country: str
-    city: str
-    address: Optional[str] = None
-
-
-class EventRegister(EventBase):
-    pass
-
-
-class EventUpdate(EventBase):
-    pass
-
-
-class EventRead(EventBase):
-    created_at: datetime
-    updated_at: datetime
