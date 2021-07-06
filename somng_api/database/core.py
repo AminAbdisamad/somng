@@ -46,14 +46,19 @@ class ContactMixin(TimeStampMixin):
     facebook_url = Column(String(200), nullable=True)
 
 
-class BaseSchema(BaseModel):
+class Schema(BaseModel):
     class Config:
         orm_mode = True
         validate_assignment = True
         arbitrary_types_allowed = True
 
 
-class ContactBase(BaseSchema):
+class StartEndDateSchema(Schema):
+    start_date: Optional[datetime] = datetime.now()
+    end_date: Optional[datetime] = datetime.now()
+
+
+class ContactBase(Schema):
     email: str
     phone: str
     website_url: Optional[str] = None
@@ -73,4 +78,3 @@ def save(*, db: Session, data: str):
     db.add(data)
     db.commit()
     db.flush(data)
-

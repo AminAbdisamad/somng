@@ -4,7 +4,8 @@ from sqlalchemy import Column, Text, String, Integer, Boolean, ForeignKey, DateT
 from sqlalchemy.orm import relationship
 from database import Base
 from database.core import ContactMixin, ContactBase
-from workshops.model import Workshop, presenter_workshop_assoc
+
+# from workshops.model import Workshop, presenter_workshop_assoc
 
 
 class Speaker(Base, ContactMixin):
@@ -31,7 +32,7 @@ class SpeakerBase(ContactBase):
     company: Optional[str] = None
     title: Optional[str] = None
     is_confirmed: Optional[bool] = False
-    publish:Optional[bool] = False
+    publish: Optional[bool] = False
 
 
 class SpeakerRegister(SpeakerBase):

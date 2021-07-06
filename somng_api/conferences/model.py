@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Optional
 from sqlalchemy import (
     Column,
@@ -10,7 +11,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import relationship
 from database import Base
-from database.core import StartEndDateMixin, BaseSchema
+from database.core import StartEndDateMixin, StartEndDateSchema
 
 
 class Conference(Base, StartEndDateMixin):
@@ -22,3 +23,23 @@ class Conference(Base, StartEndDateMixin):
     event_id = Column(Integer, ForeignKey("events.id"))
     # speakers_id = None
     # session_id = None
+
+
+class ConferenceBase(StartEndDateSchema):
+    title: str
+    description: str
+    location: str
+
+
+class ConferenceRegister(ConferenceBase):
+    pass
+
+
+class ConferenceUpdate(ConferenceBase):
+    pass
+
+
+class ConferenceRead(ConferenceBase):
+    id: int
+    createt_at: datetime
+    updated_at: datetime

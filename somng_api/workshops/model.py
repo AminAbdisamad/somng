@@ -12,7 +12,7 @@ from typing import Optional
 from sqlalchemy import Column, Text, String, Integer, Boolean, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
 from database import Base
-from database.core import StartEndDateMixin, BaseSchema
+from database.core import StartEndDateMixin, StartEndDateSchema
 
 
 # * Database Models
@@ -33,29 +33,26 @@ class Workshop(Base, StartEndDateMixin):
     title = Column(String, nullable=False)
     description = Column(Text)
     location = Column(String)
-    workshop_tracks = relationship("WorkshopTracks")
+    # workshop_tracks = relationship("WorkshopTracks")
     event_id = Column(Integer, ForeignKey("events.id"))
 
 
 # * Pydantic Models
-class WorkshopBase(BaseSchema):
+class WorkshopBase(StartEndDateSchema):
     title: str
     description: str
-    start_date: Optional[datetime] = datetime.now()
-    end_date: Optional[datetime] = datetime.now()
-    course_image: str
     location: str
 
 
-class PresenterRegister(PresenterBase):
-    avatar: Optional[str]
+class WorkshopRegister(WorkshopBase):
+    pass
 
 
-class PresenterUpdate(PresenterBase):
-    avatar: Optional[str]
+class WorkshopUpdate(WorkshopBase):
+    pass
 
 
-class PresenterRead(PresenterBase):
+class WorkshopRead(WorkshopBase):
     id: int
-    avatar: str
-    Workshops: Optional[list[Workshop]]
+    created_at: datetime
+    updated_at: datetime
