@@ -34,17 +34,17 @@ class Workshop(Base, StartEndDateMixin):
     description = Column(Text)
     location = Column(String)
     workshop_tracks = relationship("WorkshopTracks")
-
+    event_id = Column(Integer, ForeignKey("events.id"))
 
 
 # * Pydantic Models
 class WorkshopBase(BaseSchema):
-    title:str
-    description:str
-    start_date:Optional[datetime] = datetime.now()
-    end_date:Optional[datetime] = datetime.now()
-    course_image:str
-    location:str
+    title: str
+    description: str
+    start_date: Optional[datetime] = datetime.now()
+    end_date: Optional[datetime] = datetime.now()
+    course_image: str
+    location: str
 
 
 class PresenterRegister(PresenterBase):

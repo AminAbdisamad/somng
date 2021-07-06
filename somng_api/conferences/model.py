@@ -11,7 +11,6 @@ from sqlalchemy import (
 from sqlalchemy.orm import relationship
 from database import Base
 from database.core import StartEndDateMixin, BaseSchema
-from workshops.model import Workshop, presenter_workshop_assoc
 
 
 class Conference(Base, StartEndDateMixin):
@@ -20,5 +19,6 @@ class Conference(Base, StartEndDateMixin):
     title = Column(String, nullable=False)
     description = Column(Text)
     location = Column(String)
-    speakers_id = None
-    session_id = None
+    event_id = Column(Integer, ForeignKey("events.id"))
+    # speakers_id = None
+    # session_id = None
