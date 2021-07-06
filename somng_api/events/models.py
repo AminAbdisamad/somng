@@ -1,9 +1,9 @@
 from datetime import datetime
 from typing import Optional
-from sqlalchemy import Column, String, Integer, DateTime, Text
+from sqlalchemy import Column, String, Integer, DateTime, Text, Numeric
 from sqlalchemy.orm import relationship
 from database import Base
-from database.core import StartEndDateMixin, BaseSchema
+from database.core import StartEndDateMixin, StartEndDateSchema
 from workshops.model import Workshop
 from conferences.model import Conference
 
@@ -18,9 +18,9 @@ class Event(Base, StartEndDateMixin):
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False, index=True)
     description = Column(Text)
-    price = Column(Integer)
-    country = Column(String, default="Somalia")
-    city = Column(String, default="Mogadishu")
+    price = Column(Numeric)
+    country = Column(String)
+    city = Column(String)
     address = Column(String)
 
     # Relationships
@@ -29,12 +29,12 @@ class Event(Base, StartEndDateMixin):
 
 
 # Pydantic Models
-class EventBase(BaseSchema):
+class EventBase(StartEndDateSchema):
     name: str
     description: Optional[str] = None
     price: int
-    country: str
-    city: str
+    country: Optional[str] = "Somalia"
+    city: Optional[str] = "Mogadishu"
     address: Optional[str] = None
 
 
