@@ -16,6 +16,6 @@ def get_events(*, db: Session) -> list[Optional[Event]]:
     return db.query(Event).all()
 
 
-def get_events_by_id(db: Session, event_id: int) -> Optional[Event]:
+def get_events_by_id(*, db: Session, event_id: int) -> Optional[Event]:
     """Gets Event by its id"""
     return db.query(Event).filter(Event.id == event_id).one_or_none()
