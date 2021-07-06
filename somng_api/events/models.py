@@ -3,7 +3,7 @@ from typing import Optional
 from sqlalchemy import Column, String, Integer, DateTime, Text
 from sqlalchemy.orm import relationship
 from database import Base
-from database.core import StartEndDateMixin, BaseSchema
+from database.core import StartEndDateMixin, StartEndDateSchema
 from workshops.model import Workshop
 from conferences.model import Conference
 
@@ -29,7 +29,7 @@ class Event(Base, StartEndDateMixin):
 
 
 # Pydantic Models
-class EventBase(BaseSchema):
+class EventBase(StartEndDateSchema):
     name: str
     description: Optional[str] = None
     price: int
