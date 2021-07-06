@@ -49,5 +49,5 @@ class EventUpdate(EventBase):
 class EventRead(EventBase):
     workshops: Optional[Workshop]
     conferences: Optional[Conference]
-    created_at: datetime
-    updated_at: datetime
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None

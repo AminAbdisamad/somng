@@ -4,9 +4,10 @@ from sqlalchemy.orm import Session
 from database.core import get_db
 from .models import EventRead, EventRegister
 from events import services
+from config import BASE_API_URL
 
 events = APIRouter(
-    prefix="/events",
+    prefix=BASE_API_URL + "/events",
     tags=["events"],
     responses={404: {"description": "Not found"}},
 )
