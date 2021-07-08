@@ -4,7 +4,7 @@ from .model import UserSchema, UserLoginSchema
 from .services import signJWT, check_user
 from .auth_bearer import JWTBearer
 
-auth = APIRouter(prefix="/api/v1/auth")
+auth = APIRouter(prefix="/auth")
 
 users = []
 

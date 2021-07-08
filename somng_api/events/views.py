@@ -7,7 +7,7 @@ from events import services
 from config import BASE_API_URL
 
 events = APIRouter(
-    prefix=BASE_API_URL + "/events",
+    prefix="/events",
     tags=["events"],
     responses={404: {"description": "Not found"}},
 )
