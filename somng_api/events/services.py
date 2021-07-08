@@ -34,17 +34,17 @@ def update_events(*, db: Session, event: EventUpdate, event_id: int):
     for var, value in vars(event).items():
         setattr(event_db, var, value) if value else None
 
-    event_db.modified = datetime.now()
+    event_db.updated_at = datetime.now()
     save(db=db, data=event_db)
     return event_db
 
 
-def remove_events(db: Session, *, id: int) -> Event:
+def remove_events(*, db: Session, id: int) -> Event:
     """Delete Events"""
-    obj = db.query(Event).get(id)
-    db.delete(obj)
+    event = db.query(Event).get(id)
+    db.delete(event)
     db.commit()
-    return obj
+    return event
 
 
 # def delete(self, id):
