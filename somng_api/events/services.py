@@ -23,6 +23,7 @@ def get_events_by_id(*, db: Session, event_id: int) -> Optional[Event]:
 
 
 def update_events(*, db: Session, event: EventUpdate, event_id: int):
+    """Update events"""
 
     # get the existing data
     event_db = db.query(Event).filter(Event.id == event_id).one_or_none()
@@ -31,13 +32,24 @@ def update_events(*, db: Session, event: EventUpdate, event_id: int):
 
     # Update model class variable from requested fields # **typo** was vars(db_user) => vars(user)
     for var, value in vars(event).items():
-        print("Var ", var)
-        print("value ", value)
-
         setattr(event_db, var, value) if value else None
 
     event_db.modified = datetime.now()
-    db.add(event_db)
-    db.commit()
-    db.refresh(event_db)
+    save(db=db, data=event_db)
     return event_db
+
+
+def remove_events(db: Session, *, id: int) -> Event:
+    """Delete Events"""
+    obj = db.query(Event).get(id)
+    db.delete(obj)
+    db.commit()
+    return obj
+
+
+# def delete(self, id):
+#         speaker = Speaker.query.get(id)
+#         if speaker:
+#             speaker.delete()
+#             return ({"message": "Speaker deleted sucessfully"}), 200
+#         return ({"message": "speaker not found"}), 404
