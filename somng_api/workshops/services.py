@@ -6,24 +6,24 @@ from datetime import datetime
 
 
 def create_workshop(*, db: Session, workshop: WorkshopRegister) -> Optional[Workshop]:
-    """Adds Events to the database"""
+    """Adds Workshops to the database"""
     workshop = Workshop(**workshop.dict())
     save(db=db, data=workshop)
     return workshop
 
 
 def get_workshops(*, db: Session) -> list[Optional[Workshop]]:
-    """Get all events"""
+    """Get all Workshops"""
     return db.query(Workshop).all()
 
 
 def get_workshop_by_id(*, db: Session, workshop_id: int) -> Optional[Workshop]:
-    """Gets Event by its id"""
+    """Gets Workshop by its id"""
     return db.query(Workshop).filter(Workshop.id == workshop_id).one_or_none()
 
 
 def update_workshops(*, db: Session, workshop: WorkshopUpdate, workshop_id: int):
-    """Update events"""
+    """Update Workshops"""
 
     # get the existing data
     workshop_db = db.query(Workshop).filter(Workshop.id == workshop_id).one_or_none()
@@ -40,7 +40,7 @@ def update_workshops(*, db: Session, workshop: WorkshopUpdate, workshop_id: int)
 
 
 def remove_workshop_by_id(*, db: Session, id: int) -> Workshop:
-    """Delete Events"""
+    """Delete Workshops"""
     workshop = db.query(Workshop).get(id)
     db.delete(workshop)
     db.commit()
