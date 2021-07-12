@@ -1,11 +1,10 @@
 from typing import Optional
 from fastapi import APIRouter, Depends
-
 from sqlalchemy.orm import Session
 from database.core import get_db
 from .models import Event, EventRead, EventRegister, EventUpdate
 from events import services
-from config import BASE_API_URL
+
 
 events = APIRouter(
     prefix="/events",
@@ -19,7 +18,7 @@ async def add_event(event: EventRegister, db: Session = Depends(get_db)):
     return services.create_event(db=db, event=event)
 
 
-@events.get("/")
+@events.get("/", response_model=list[Optional[EventRead]])
 async def get_events(db: Session = Depends(get_db)):
     return services.get_events(db=db)
 

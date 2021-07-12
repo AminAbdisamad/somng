@@ -4,7 +4,8 @@ from sqlalchemy import Column, String, Integer, DateTime, Text, Numeric
 from sqlalchemy.orm import relationship
 from database import Base
 from database.core import StartEndDateMixin, StartEndDateSchema
-from workshops.model import Workshop
+
+from workshops.models import WorkshopRead
 from conferences.model import Conference
 
 # One event can have multiple relationships One to many
@@ -47,7 +48,7 @@ class EventUpdate(EventBase):
 
 
 class EventRead(EventBase):
-    workshops: Optional[Workshop]
-    conferences: Optional[Conference]
+    workshops: Optional[WorkshopRead]
+    # conferences: Optional[Conference]
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None

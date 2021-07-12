@@ -1,6 +1,6 @@
 from typing import Optional
-from datetime import datetime
-from sqlalchemy import Column, DateTime, String
+from datetime import datetime, date, timedelta
+from sqlalchemy import Column, DateTime, String, Date
 from pydantic import BaseModel
 from enum import Enum
 from sqlalchemy.orm import Session
@@ -32,8 +32,11 @@ class TimeStampMixin:
 class StartEndDateMixin(TimeStampMixin):
     """Start date & End date Mixin"""
 
-    start_date = Column(DateTime, default=datetime.now)
-    end_date = Column(DateTime, default=datetime.now)
+    start_default = date.today()
+    end_default = start_default + timedelta(days=5)
+
+    start_date = Column(Date, default=start_default)
+    end_date = Column(Date, default=end_default)
 
 
 class ContactMixin(TimeStampMixin):
@@ -57,8 +60,8 @@ class Schema(BaseModel):
 
 
 class StartEndDateSchema(Schema):
-    start_date: Optional[datetime] = None
-    end_date: Optional[datetime] = None
+    start_date: Optional[date]
+    end_date: Optional[date]
 
 
 class ContactBase(Schema):

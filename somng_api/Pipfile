@@ -9,6 +9,7 @@ uvicorn = {extras = ["standard"], version = "*"}
 sqlalchemy = "*"
 pyjwt = "*"
 pydantic = {extras = ["email"], version = "*"}
+alembic = "*"
 
 [dev-packages]
 flake8 = "*"
