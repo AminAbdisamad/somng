@@ -1,11 +1,10 @@
 from typing import Optional
 from fastapi import APIRouter, Depends
-
 from sqlalchemy.orm import Session
 from database.core import get_db
 from .models import Event, EventRead, EventRegister, EventUpdate
 from events import services
-from config import BASE_API_URL
+
 
 events = APIRouter(
     prefix="/events",

@@ -45,11 +45,3 @@ def remove_events(*, db: Session, id: int) -> Event:
     db.delete(event)
     db.commit()
     return event
-
-
-# def delete(self, id):
-#         speaker = Speaker.query.get(id)
-#         if speaker:
-#             speaker.delete()
-#             return ({"message": "Speaker deleted sucessfully"}), 200
-#         return ({"message": "speaker not found"}), 404
