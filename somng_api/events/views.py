@@ -18,7 +18,7 @@ async def add_event(event: EventRegister, db: Session = Depends(get_db)):
     return services.create_event(db=db, event=event)
 
 
-@events.get("/")
+@events.get("/", response_model=list[Optional[EventRead]])
 async def get_events(db: Session = Depends(get_db)):
     return services.get_events(db=db)
 
