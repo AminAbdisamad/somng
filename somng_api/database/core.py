@@ -1,5 +1,5 @@
 from typing import Optional
-from datetime import datetime
+from datetime import datetime,date
 from sqlalchemy import Column, DateTime, String
 from pydantic import BaseModel
 from enum import Enum
