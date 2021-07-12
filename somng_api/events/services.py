@@ -12,7 +12,7 @@ def create_event(*, db: Session, event: EventRegister) -> Optional[Event]:
     return event
 
 
-def get_events(*, db: Session) -> list[Optional[Event]]:
+def get_events(*, db: Session) -> list[Optional[EventRead]]:
     """Get all events"""
     return db.query(Event).all()
 
