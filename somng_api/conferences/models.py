@@ -41,5 +41,5 @@ class ConferenceUpdate(ConferenceBase):
 
 class ConferenceRead(ConferenceBase):
     id: int
-    createt_at: datetime
-    updated_at: datetime
+    created_at: Optional[datetime]
+    updated_at: Optional[datetime]

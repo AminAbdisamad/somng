@@ -6,15 +6,14 @@ from database import Base
 from database.core import StartEndDateMixin, StartEndDateSchema
 
 from workshops.models import WorkshopRead
-from conferences.models import Conference
+from conferences.models import ConferenceRead
 
 # One event can have multiple relationships One to many
 
 
 class Event(Base, StartEndDateMixin):
-    """An Event Model that represents events table in the database"""
-
     __tablename__ = "events"
+    """An Event Model that represents events table in the database"""
 
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False, index=True)
@@ -48,7 +47,7 @@ class EventUpdate(EventBase):
 
 
 class EventRead(EventBase):
-    workshops: list[Optional[WorkshopRead]] = []
-    # conferences: Optional[Conference]
+    workshops: Optional[WorkshopRead] = None
+    conferences: Optional[ConferenceRead] = None
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None

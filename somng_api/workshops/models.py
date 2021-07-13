@@ -29,7 +29,8 @@ from database.core import StartEndDateMixin, StartEndDateSchema
 
 class Workshop(Base, StartEndDateMixin):
     __tablename__ = "workshops"
-    id = Column(Integer, primary_key=True, index=True)
+
+    id = Column(Integer, primary_key=True)
     title = Column(String, nullable=False)
     description = Column(Text)
     location = Column(String)
