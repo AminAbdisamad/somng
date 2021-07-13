@@ -36,7 +36,9 @@ class StartEndDateMixin(TimeStampMixin):
     end_default = start_default + timedelta(days=5)
 
     start_date = Column(Date, default=start_default)
+    start_date._creation_order = 999
     end_date = Column(Date, default=end_default)
+    end_date._creation_order = 999
 
 
 class ContactMixin(TimeStampMixin):
