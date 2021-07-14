@@ -5,6 +5,8 @@
 pipenv install alembic
 alembic init alembic
 ----
-
+[source,bash]
+----
 alembic revision -m "create account table"
 alembic upgrade head
+----
