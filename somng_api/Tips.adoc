@@ -1,4 +1,4 @@
-== Alembic Integration
+== Alembic Docs
 
 [source,bash]
 ----
