@@ -15,6 +15,7 @@ export const NameTag = ({ name, age }: NameType) => {
 interface MetadataType {
   institutionName: string;
   date: string;
+  filename: string;
 }
 
 export const nowYouSeeMe = ({ a, b }: { a: number; b: number }) => {
