@@ -11,6 +11,7 @@ export const NameTag = ({ name, age }: NameType) => {
   );
 };
 
+// This enterface works as a type
 interface MetadataType {
   institutionName: string;
   date: string;
