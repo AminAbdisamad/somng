@@ -1,6 +1,6 @@
 interface NameType {
   name: string;
-  age?: number;
+  age: number;
 }
 
 export const NameTag = ({ name, age }: NameType) => {
