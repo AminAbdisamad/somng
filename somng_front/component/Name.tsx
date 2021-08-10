@@ -35,4 +35,5 @@ export default function greeting(message: string) {
   return 'Hello there';
 }
 
-export const getAge = (pathYear) => pathYear - Date().getFullYear() 
+export const getAge = (yearOfBirth) => yearOfBirth - Date().getFullYear() 
+
