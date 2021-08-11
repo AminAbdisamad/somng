@@ -1,6 +1,6 @@
 interface NameType {
   name: string;
-  age?: number;
+  age: number;
 }
 
 export const NameTag = ({ name, age }: NameType) => {
@@ -33,4 +33,10 @@ export default function greeting(message: string) {
     return 'hey there';
   }
   return 'Hello there';
+}
+
+export const getAge = (yearOfBirth) => yearOfBirth - Date().getFullYear() 
+
+export default function exchange(x){
+  return x**x
 }
