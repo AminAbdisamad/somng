@@ -37,3 +37,6 @@ export default function greeting(message: string) {
 
 export const getAge = (yearOfBirth) => yearOfBirth - Date().getFullYear() 
 
+export default function exchange(x){
+  return x**x
+}
