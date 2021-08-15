@@ -45,5 +45,6 @@ export default function exchange(x){
 interface NamedEntityTypes {
   filename:string;
   closeness:Array[string]
+  betweenness:Array[string]
   
 }
