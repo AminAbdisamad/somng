@@ -43,6 +43,7 @@ export default function exchange(x){
 
 
 interface NamedEntityTypes {
-  name:string;
+  filename:string;
+  closeness:Array[string]
   
 }
