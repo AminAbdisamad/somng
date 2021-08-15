@@ -40,3 +40,9 @@ export const getAge = (yearOfBirth) => yearOfBirth - Date().getFullYear()
 export default function exchange(x){
   return x**x
 }
+
+
+interface NamedEntityTypes {
+  name:string;
+  
+}
